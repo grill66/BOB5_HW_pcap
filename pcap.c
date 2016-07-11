@@ -2,16 +2,15 @@
 #include <pcap.h>
 #include <errno.h>
 
-//compile option : gcc -o pcap pcap.c -lpcap -I/usr/include/pcap
+//gcc -o pcap pcap.c -lpcap -I/usr/include/pcap
+//This struct for Ethernet Header
 
-//This struct is for Ethernet Header
 typedef struct Ethernet_Header {
 	unsigned char dstMACaddr[6];
 	unsigned char srcMACaddr[6];
 	unsigned char type[4];	
 } EthHeader;
 
-//This struct is for IP Header 
 typedef struct IP_Header {
 	unsigned char IPhLen; 			//Lenth of IP Header
 	unsigned char protocol;
@@ -19,7 +18,7 @@ typedef struct IP_Header {
 	unsigned char dstIPaddr [6];	//IP address of destination
 } IPHeader;
 
-//This is struct is for TCP Header
+//This is struct for TCP Header
 typedef struct TCP_Header {
 	unsigned char srcport[2];
 	unsigned char dstport[2];
