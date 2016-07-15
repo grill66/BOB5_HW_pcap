@@ -14,8 +14,8 @@ typedef struct Ethernet_Header {
 typedef struct IP_Header {
 	unsigned char IPhLen; 			//Lenth of IP Header
 	unsigned char protocol;
-	unsigned char srcIPaddr [6];	//IP address of Source
-	unsigned char dstIPaddr [6];	//IP address of destination
+	unsigned char srcIPaddr [4];	//IP address of Source
+	unsigned char dstIPaddr [4];	//IP address of destination
 } IPHeader;
 
 //This is struct for TCP Header
@@ -48,10 +48,7 @@ int IP_Header_Parsing (const u_char * packet, IPHeader * IPheader) {
 	int i = 0;
 
 	//Parsing IP header lenth...
-	IPheader->IPhLen = packet[0];
-	IPheader->IPhLen = IPheader->IPhLen << 4;
-	IPheader->IPhLen = IPheader->IPhLen >> 4;
-
+	IPheader->IPhLen = packet[0] & 0x0F;
 
 	//Parsing Protocol of higher layer...
 	IPheader->protocol = packet[9];
